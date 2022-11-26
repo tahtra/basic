@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  padding: 20px 0;
+
+  a {
+    padding: 0 10px;
+    height: 40px;
+    line-height: 40px;
+
+    &.active {
+      background-color: #F0F8FF;
+    }
+  }
+}
