@@ -1,2 +1,18 @@
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+app-root {
+  display: flex;
+  height: 100vh;
+  background-color: #eeeeee;
+
+  .content {
+    width: 100%;
+  }
+}
