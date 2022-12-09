@@ -14,6 +14,6 @@ export const RoutesList = [
   {
     path: 'ship-equipment',
     title: 'ship-equipment'
-  },
+  }
 ]
 

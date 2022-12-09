@@ -8,7 +8,7 @@ import {MainComponent} from '../modules/main/main.component';
 export const appRoutes: Routes = [
   {
     path: 'main',
-    component: MainComponent
+    component: MainComponent,
   },
   {
     path: 'motherboards',
@@ -26,8 +26,8 @@ export const appRoutes: Routes = [
     path: 'ship-equipment',
     component: ShipEquipmentComponent
   },
-  // {
-  //   path: '**',
-  //   redirectTo: ''
-  // }
+  {
+    path: '**',
+    redirectTo: 'main'
+  }
 ]

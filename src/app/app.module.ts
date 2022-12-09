@@ -11,6 +11,7 @@ import { SoftwareComponent } from './modules/software/software.component';
 import { SidebarComponent } from '../common/ui/sidebar/sidebar.component';
 import { MainComponent } from './modules/main/main.component';
 import {CommonModule} from '@angular/common';
+import { HeaderComponent } from '../common/ui/header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +21,14 @@ import {CommonModule} from '@angular/common';
     SoundDevicesComponent,
     ShipEquipmentComponent,
     SoftwareComponent,
-    SidebarComponent
+    SidebarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes, {useHash: true}),
     CommonModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
