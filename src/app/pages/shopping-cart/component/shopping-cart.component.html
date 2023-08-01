@@ -1,0 +1,31 @@
+<mat-accordion>
+	<mat-expansion-panel *ngFor="let cart of shoppingCartService.basket; let index = index;">
+		<mat-expansion-panel-header>
+			<mat-panel-title>Форм фактор: {{cart.motherboard.title}}</mat-panel-title>
+			<mat-panel-description>Количество: {{cart.count}}</mat-panel-description>
+			<mat-panel-description>Data finish __ __ ____</mat-panel-description>
+		</mat-expansion-panel-header>
+
+		<p><strong>Interfaces</strong> {{cart.interfaces | json}}</p>
+
+		<mat-divider></mat-divider>
+		<div class="button-wrap mt-5">
+			<button (click)="shoppingCartService.deleteElement(index)" color="warn" mat-mini-fab matTooltip="Удалить">
+				<mat-icon>delete</mat-icon>
+			</button>
+
+			<button [routerLink]="'../edit/'+index" class="ml-4" mat-raised-button>Изменить</button>
+		</div>
+	</mat-expansion-panel>
+</mat-accordion>
+
+<div class="mt-5 button-wrap">
+	<button (click)="shoppingCartService.clearBacket()" mat-raised-button>Очистить</button>
+
+	<div class="spacer"></div>
+
+	<button color="primary" mat-mini-fab matTooltip="Добавить" routerLink="../new">
+		<mat-icon>add_shopping_cart</mat-icon>
+	</button>
+	<button class="ml-4" color="accent" mat-raised-button routerLink="../payment">Перейти к оплате</button>
+</div>

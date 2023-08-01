@@ -1,0 +1,155 @@
+@import '../../../../../styles/mixins/media';
+
+:host {
+	display:         flex;
+	flex-direction:  column;
+	justify-content: space-between;
+	width:           100%;
+	height:          100%;
+}
+
+.stepper-footer {
+	display:    flex;
+	overflow:   hidden;
+	width:      100%;
+	min-height: 60px;
+	padding:    12px 24px 12px;
+	border-top: 1px solid #eeeeee;
+
+	button + button {
+		margin-left: 24px;
+	}
+}
+
+.stepper-title {
+	display:     none;
+	font-size:   24px;
+	font-weight: 500;
+
+	@include tablet {
+		display: block;
+	}
+}
+
+.active {
+	color: red;
+}
+
+.stepper-content {
+	//display:   flex;
+	//flex-wrap: wrap;
+	display:               grid;
+	grid-template-columns: auto;
+	column-gap:            20px;
+	row-gap:               4px;
+
+	&--formfactor {
+		@include tablet {
+			grid-template-columns: 1fr 3fr;
+		}
+	}
+
+	&--interface {
+		@include tablet {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@include large {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+
+
+	&--count {
+		@include tablet {
+			grid-template-columns: 400px;
+		}
+	}
+
+	.input-wrap {
+		display:     flex;
+		flex-wrap:   wrap;
+		padding-top: 20px;
+
+		mat-form-field {
+			margin: 10px;
+		}
+
+		@include tablet {
+			flex-direction: column;
+
+			mat-form-field {
+				margin: 0;
+			}
+		}
+	}
+
+	.slider-wrap {
+		display:         flex;
+		flex-direction:  column;
+		justify-content: center;
+		//align-items: center;
+		padding:         0 10px;
+	}
+}
+
+.radio-group {
+	display:        flex;
+	align-items:    flex-start;
+	flex-direction: column;
+}
+
+mat-checkbox {
+	width: 100%;
+}
+
+mat-slider {
+	max-width: 200px;
+}
+
+.constructor {
+	&__sidebar {
+		display:          flex;
+		flex-direction:   column;
+		position:         fixed;
+		top:              60px;
+		left:             0;
+		width:            250px;
+		margin:           20px 0;
+		padding:          16px;
+		border-radius:    0 16px 16px 0;
+		background-color: white;
+		box-shadow:       0 4px 16px rgba(84, 115, 232, .16);
+	}
+
+	&__area {
+		padding: 40px;
+	}
+
+	&__motherboard {
+		border:           1px solid black;
+		background-color: #2e5e2e;
+	}
+
+	&__interface-list {
+		display:               grid;
+		align-self:            center;
+		position:              relative;
+		user-select:           none;
+		cursor:                grab;
+		grid-template-columns: 1fr 1fr;
+		gap:                   16px;
+	}
+
+	&__interface-item {
+		display:          flex;
+		overflow:         hidden;
+		align-items:      center;
+		justify-content:  center;
+		width:            80px;
+		height:           80px;
+		padding:          0 8px;
+		background-color: #cadbff;
+		text-overflow:    ellipsis;
+	}
+}

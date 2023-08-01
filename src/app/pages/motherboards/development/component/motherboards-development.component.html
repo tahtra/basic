@@ -1,0 +1,104 @@
+<mat-stepper #stepper [orientation]="(stepperOrientation | async)!">
+	<mat-step>
+		<ng-template matStepLabel>Форм фактор</ng-template>
+		<ng-template matStepContent>
+			<div class="stepper-title">Форм фактор</div>
+
+			<div [formGroup]="selectedMotherboard" class="stepper-content stepper-content--formfactor">
+				<div class="input-wrap">
+					<mat-form-field appearance="outline">
+						<mat-label>Height</mat-label>
+						<input formControlName="height" matInput number-only="integer">
+						<mat-error>Заполните поле</mat-error>
+					</mat-form-field>
+
+					<mat-form-field appearance="outline">
+						<mat-label>Width</mat-label>
+						<input formControlName="width" matInput number-only="integer">
+						<mat-error>Заполните поле</mat-error>
+					</mat-form-field>
+				</div>
+
+				<mat-radio-group class="radio-group">
+					<mat-radio-button
+						(input)="changeFormFactor(item)"
+						*ngFor="let item of motherboardsList;  let index = index"
+						[checked]="index===0"
+						[value]="item"
+					>{{item.title}}
+					</mat-radio-button>
+				</mat-radio-group>
+			</div>
+		</ng-template>
+	</mat-step>
+
+	<mat-step>
+		<ng-template matStepLabel>Интерфейсы</ng-template>
+
+		<ng-template matStepContent>
+			<div class="stepper-title">Интерфейсы</div>
+
+			<div [formGroup]="selectedInterfaces" class="stepper-content stepper-content--interface">
+				<ng-container *ngFor="let item of interfacesList">
+					<mat-checkbox *ngIf="!item.max" [formControlName]="item.name" color="primary">{{item.title}}</mat-checkbox>
+
+					<div *ngIf="item.max" class="slider-wrap">
+						<label class="mr-5">{{item.title}}</label>
+						<mat-slider
+							[max]="item.max" discrete="true" min="0" step="1"
+						>
+							<input [formControlName]="item.name" matSliderThumb>
+						</mat-slider>
+					</div>
+				</ng-container>
+			</div>
+		</ng-template>
+	</mat-step>
+
+	<mat-step>
+		<ng-template matStepLabel>Детализация</ng-template>
+		<ng-template matStepContent>
+			<div class="stepper-content stepper-content--details">
+				<div class="constructor">
+					<div class="constructor__sidebar">
+						<div class="constructor__interface-list">
+							<div *ngFor="let item of selectedInterfacesList" cdkDrag class="constructor__interface-item">{{item.title}}</div>
+						</div>
+
+						<div class="constructor__actions">Возможность добавлять отверстия</div>
+					</div>
+					<div class="constructor__area">
+						<div class="constructor__motherboard" [style.height.px]="selectedMotherboard.get('height')?.value * MULTIPLIER_PX_IN_MM" [style.width.px]="selectedMotherboard.get('width')?.value * MULTIPLIER_PX_IN_MM"></div>
+					</div>
+				</div>
+			</div>
+		</ng-template>
+	</mat-step>
+
+	<mat-step>
+		<ng-template matStepLabel>Итог</ng-template>
+		<ng-template matStepContent>
+			<div class="stepper-title">Итог</div>
+			<div class="stepper-content stepper-content--count">
+				<div class="input-wrap">
+					<mat-form-field appearance="outline">
+						<mat-label>Количество</mat-label>
+						<input [formControl]="countMotherboard" matInput number-only="integer">
+						<mat-error *ngIf="countMotherboard.hasError('min') && !countMotherboard.hasError('required')">Количество не может быть меньше 1</mat-error>
+						<mat-error *ngIf="countMotherboard.hasError('required')">Заполните поле</mat-error>
+					</mat-form-field>
+				</div>
+			</div>
+		</ng-template>
+	</mat-step>
+</mat-stepper>
+
+<div class="stepper-footer">
+	<button (click)="stepper.previous()" [disabled]="stepper.selectedIndex === 0" mat-raised-button>Назад</button>
+	<button (click)="stepper.next()" *ngIf="stepper.selectedIndex !== 2" color="primary" mat-raised-button>Дальше</button>
+	<button
+		(click)="addToBasket()" *ngIf="stepper.selectedIndex === 3" color="primary" mat-raised-button
+	>Оформить заказ
+	</button>
+</div>
+

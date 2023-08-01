@@ -1,0 +1,13 @@
+// Миксин для задания z-index
+
+// ####Example
+//
+// Selector {
+//   @include z-index(sidebar)
+// };
+
+$elements: landing, header, overlay, sidebar, modal, very-important-modal;
+
+@mixin z-index($id) {
+	z-index: index($elements, $id);
+}

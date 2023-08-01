@@ -1,0 +1,16 @@
+:host {
+	display:        flex;
+	align-items:    flex-start;
+	flex-direction: column;
+	width:          100%;
+}
+
+mat-accordion {
+	align-self: stretch;
+}
+
+.button-wrap {
+	display:     flex;
+	align-items: center;
+	align-self: stretch;
+}

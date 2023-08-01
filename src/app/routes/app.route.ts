@@ -1,33 +1,34 @@
 import {Routes} from '@angular/router';
-import {MotherboardsComponent} from '../modules/motherboards/motherboards.component';
-import {ShipEquipmentComponent} from '../modules/ship-equipment/ship-equipment.component';
-import {SoftwareComponent} from '../modules/software/software.component';
-import {SoundDevicesComponent} from '../modules/sound-devices/sound-devices.component';
-import {MainComponent} from '../modules/main/main.component';
+
 
 export const appRoutes: Routes = [
-  {
-    path: 'main',
-    component: MainComponent,
-  },
-  {
-    path: 'motherboards',
-    component: MotherboardsComponent
-  },
-  {
-    path: 'sound-devices',
-    component: SoundDevicesComponent
-  },
-  {
-    path: 'software',
-    component: SoftwareComponent
-  },
-  {
-    path: 'ship-equipment',
-    component: ShipEquipmentComponent
-  },
-  {
-    path: '**',
-    redirectTo: 'main'
-  }
-]
+	{
+		path: 'main',
+		loadChildren: () => import('../pages/main/main.module').then(m => m.MainModule),
+		title: 'Basic'
+	},
+	{
+		path: 'motherboards',
+		loadChildren: () => import('../pages/motherboards/motherboards.module').then(m => m.MotherboardsModule),
+		title: 'Motherboards'
+	},
+	{
+		path: 'sound-devices',
+		loadChildren: () => import('../pages/sound-devices/sound-devices.module').then(m => m.SoundDevicesModule),
+		title: 'Sound-devices'
+	},
+	{
+		path: 'software',
+		loadChildren: () => import('../pages/software/software.module').then(m => m.SoftwareModule),
+		title: 'Software'
+	},
+	{
+		path: 'ship-equipment',
+		loadChildren: () => import('../pages/ship-equipment/ship-equipment.module').then(m => m.ShipEquipmentModule),
+		title: 'Ship-equipment'
+	},
+	{
+		path: '**',
+		redirectTo: 'main'
+	}
+];

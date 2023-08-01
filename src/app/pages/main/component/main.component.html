@@ -1,0 +1,5 @@
+<div class="route-block">
+	<a *ngFor="let item of routesList" class="route-block__link" [routerLink]="'/' + item.path" [class.disabled]="!item.active">
+		<span>{{item.title}}</span>
+	</a>
+</div>
